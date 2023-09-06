@@ -11,8 +11,8 @@ from mol_features import data_prep
 from maccs_features import generate_and_concatenate_MACCS_keys
 import pandas as pd
 
-train = pd.read_csv('/train.csv')
-test = pd.read_csv('/test.csv')
+train = pd.read_csv('/train_ms.csv')
+test = pd.read_csv('/test_ms.csv')
 
 train.loc[2796, 'AlogP'] = train.loc[2796, 'LogD']
 train.loc[3387, 'AlogP'] = train.loc[3387, 'LogD']

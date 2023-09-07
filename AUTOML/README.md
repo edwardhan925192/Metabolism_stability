@@ -16,10 +16,10 @@ from morgan_finger_features import generate_morgan_fingerprints_and_concat
 concatenated_train = generate_morgan_fingerprints_and_concat(train)  
 concatenated_test = generate_morgan_fingerprints_and_concat(test)  
 
-dataframe is concatted with morgan_finger_prints of smiles  
+dataframe is concatted with morgan_finger_prints of mols    
 
 # data_prep_main.py   
 import preprocess_data  
 train, test = preprocess_data()  
 
-Missing values are filled dataframe is called 
+Missing values are filled and dataframe is called  

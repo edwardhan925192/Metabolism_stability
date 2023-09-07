@@ -9,7 +9,7 @@ Original file is located at
 
 import pandas as pd
 
-def preprocess_data():
+def preprocess_data(train_path, test_path):
     """
     Loads and preprocesses the train and test data.
     
@@ -19,8 +19,8 @@ def preprocess_data():
     """
     
     # Paths (assuming these are constants for your project)
-    train_data_path = '/train_ms.csv'
-    test_data_path = '/test_ms.csv'
+    train_data_path = train_path
+    test_data_path = test_path
     
     # Load data
     train = pd.read_csv(train_data_path)

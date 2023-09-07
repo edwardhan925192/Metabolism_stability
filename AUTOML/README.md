@@ -19,7 +19,7 @@ concatenated_test = generate_morgan_fingerprints_and_concat(test)
 dataframe is concatted with morgan_finger_prints of mols    
 
 # data_prep_main.py   
-import preprocess_data  
+from data_prep_main import preprocess_data  
 train, test = preprocess_data()  
 
 Missing values are filled and dataframe is called  

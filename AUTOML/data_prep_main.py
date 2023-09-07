@@ -9,7 +9,7 @@ Original file is located at
 
 import pandas as pd
 
-def preprocess_data(train_path, test_path):
+def preprocess_call_data(train_path, test_path):
     """
     Loads and preprocesses the train and test data.
     

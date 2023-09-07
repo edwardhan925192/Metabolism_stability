@@ -51,9 +51,6 @@ def get_mol_features(mol):
     return features
 
 def data_prep(data):
-'''
-This function concat original data and molecule information of the data
-'''
   atom_stereo_centers = []
   F_counts, Cl_counts, Br_counts = [], [], []
   estate_indices = []

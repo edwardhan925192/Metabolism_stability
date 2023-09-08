@@ -32,9 +32,15 @@ def main(args):
     testf = testf.drop(['id', 'SMILES'], axis=1)
 
     # Optimization and predictions
-    best_param = optimize_hyperparams(args.model, trainf, drop_column, args.optuna_trials)
-    train_pred = recursive_training_and_prediction(args.model, trainf, drop_column, best_param)
-    test_pred = predict_on_test(args.model, trainf, drop_column, testf, best_param)
+    if drop_column == "MLM":
+        target_column = "HLM"
+    else:
+        target_column = "MLM"
+    
+    best_param = optimize_hyperparams(args.model, trainf, target_column, args.optuna_trials)
+    train_pred = recursive_training_and_prediction(args.model, trainf, target_column, best_param)
+    test_pred = predict_on_test(args.model, trainf, target_column, testf, best_param)
+
 
     # Additional tasks can be added here if needed
     suffix = 'MLM' if drop_column == 'HLM' else 'HLM'

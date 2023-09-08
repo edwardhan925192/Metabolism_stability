@@ -37,7 +37,7 @@ def main(args):
     else:
         target_column = "MLM"
     
-    X = trainf.drop([target_column])
+    X = trainf.drop([target_column],axis = 1)
     y = trainf[target_column]
     
     best_param = optimize_hyperparams(args.model, X, y, args.optuna_trials)

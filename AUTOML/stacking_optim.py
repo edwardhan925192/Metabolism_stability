@@ -33,7 +33,7 @@ def optimize_hyperparams(model_name, X, y, trials=100):
   elif model_name == 'catboost':
     def cat_objective(trial):
       param = {
-                'loss_function': 'MAE',
+                'loss_function': 'MSE',
                 'iterations': trial.suggest_int('iterations', 10, 6000),
                 'learning_rate': trial.suggest_loguniform('learning_rate', 0.005, 0.05),
                 'depth': trial.suggest_int('depth', 1, 18),
@@ -55,7 +55,7 @@ def optimize_hyperparams(model_name, X, y, trials=100):
       print("Entered lgb_objective...")
       param = {
               'boosting_type': 'gbdt',
-              'objective': 'mae',  # Use custom objective function,
+              'objective': 'mse',  # Use custom objective function,
               'metric': 'l1',
               'n_estimators':trial.suggest_int('n_estimators', 10, 6000),
               'verbosity': -1,

@@ -53,12 +53,12 @@ Data is expected to be csv files.
 Feature,maccs,finger concatenate original dataframe with features of mols, maccs of mols,and morgan finger prints of mols.
 
 * Target  
-If the Target is MLM drop HLM, if it is HLM drop MLM.
+If the Target is MLM drop HLM, if it is HLM drop MLM.  
 
-* Model
-Choose model for stacking
+* Model  
+Choose model for stacking  
 
-* Trial
+* Trial  
 Optuna trial  
 
 

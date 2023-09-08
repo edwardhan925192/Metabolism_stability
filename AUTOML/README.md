@@ -59,7 +59,15 @@ If the Target is MLM drop HLM, if it is HLM drop MLM.
 Choose model for stacking  
 
 * Trial  
-Optuna trial  
+Optuna trial
+
+# Colab  
+!pip install xgboost  
+!pip install catboost 
+!pip install lightgbm  
+!pip install rdkit  
+!git clone https://github.com/edwardhan925192/Metabolism_stability.git  
+%cd '/content/Metabolism_stability/AUTOML'  
 
 
 

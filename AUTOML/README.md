@@ -12,9 +12,11 @@ python main.py \
 --time_limit 3600 * 4  
 
 # Colab  
+!pip install autogluon  
+!pip install rdkit  
 !git clone https://github.com/edwardhan925192/Metabolism_stability.git  
 %cd '/content/Metabolism_stability/AUTOML'  
-Then run the script  
+Runtime should be restarted after installing autogluon   
 
 # Data  
 Data is expected to be csv files.  

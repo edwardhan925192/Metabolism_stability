@@ -18,22 +18,20 @@ python main.py \
 %cd '/content/Metabolism_stability/AUTOML'  
 Runtime should be restarted after installing autogluon   
 
-# Data  
+* Data  
 Data is expected to be csv files.  
-
-# Features  
+* Features  
 Feature,maccs,finger concatenate original dataframe with features of mols, maccs of mols,and morgan finger prints of mols.  
-
-# Target  
+* Target  
 If the Target is MLM drop HLM, if it is HLM drop MLM.    
+* Stacking  
+Stackings are expected to be in joblib form. if needed pass the paths.  
+* Save mode  
+If main is passed prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.  
+* Timelimit  
+Time limit of autogluon
 
 # Stacking  
-Stackings are expected to be in joblib form. if needed pass the paths.  
 
-# Save mode  
-If main is passed prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.  
-
-# Timelimit  
-Time limit of autogluon
 
 

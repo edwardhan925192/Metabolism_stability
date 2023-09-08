@@ -31,7 +31,7 @@ best_param_lgb = optimize_hyperparams('lightgbm',X,y,50)
 lgb_pred = recursive_training_and_prediction('lightgbm',X,y,best_param_lgb)
 
 # prediction for test
-lgb_pred_test = predict_on_test(X,y,testf,best_param_lgb)
+lgb_pred_test = predict_on_test('lightgbm',X,y,testf,best_param_lgb)
 
 # concat train test
 trainf_stack = pd.concat([trainf,lgb_pred], axis = 1)

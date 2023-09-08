@@ -12,7 +12,7 @@ python main.py \
 --time_limit 3600 * 4
 
 # Data  
-Data is expected to be a csv files.  
+Data is expected to be csv files.  
 
 # Features  
 Feature,maccs,finger concatenate original dataframe with features of mols, maccs of mols,and morgan finger prints of mols.  

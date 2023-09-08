@@ -24,7 +24,7 @@ def optimize_hyperparams(model_name, X, y, trials=100):
       param = {
               'booster': 'gbtree',
               'objective': 'reg:squarederror',
-              'n_estimators': trial.suggest_int('n_estimators', 10, 2500),
+              'n_estimators': trial.suggest_int('n_estimators', 10, 7500),
               'eta': trial.suggest_loguniform('eta', 0.005, 0.05),
               'max_depth': trial.suggest_int('max_depth', 1, 18),
               'subsample': trial.suggest_float('subsample', 0.9, 1.0),
@@ -43,7 +43,7 @@ def optimize_hyperparams(model_name, X, y, trials=100):
     def cat_objective(trial):
       param = {
                 'loss_function': 'MAE',
-                'iterations': trial.suggest_int('iterations', 10, 2500),
+                'iterations': trial.suggest_int('iterations', 10, 7500),
                 'learning_rate': trial.suggest_loguniform('learning_rate', 0.005, 0.05),
                 'depth': trial.suggest_int('depth', 1, 18),
                 'subsample': trial.suggest_float('subsample', 0.9, 1.0),
@@ -66,7 +66,7 @@ def optimize_hyperparams(model_name, X, y, trials=100):
               'boosting_type': 'gbdt',
               'objective': 'mae',  # Use custom objective function,
               'metric': 'l1',
-              'n_estimators':trial.suggest_int('n_estimators', 10, 2500),
+              'n_estimators':trial.suggest_int('n_estimators', 10, 7500),
               'verbosity': -1,
               'extra_trees': True,
               'num_leaves': trial.suggest_int('num_leaves', 2, 100),

@@ -24,8 +24,8 @@ def main(args):
         trainf = generate_morgan_fingerprints_and_concat(train)
         testf = generate_morgan_fingerprints_and_concat(test)
 
-    trainf = trainf.drop(['id'], axis=1)
-    testf = testf.drop(['id'], axis=1)
+    trainf = trainf.drop(['id','SMILES'], axis=1)
+    testf = testf.drop(['id','SMILES'], axis=1)
 
     # Save the results as CSV files
     trainf.to_csv('trainf.csv', index=False)

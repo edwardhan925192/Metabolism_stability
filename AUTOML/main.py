@@ -53,12 +53,12 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process molecular data with different feature sets.")
-    
-    parser.add_argument("--feature", action="store_true", help="Whether to use features or not.")
-    parser.add_argument("--maccs", action="store_true", help="Whether to use MACCS keys.")
-    parser.add_argument("--finger", action="store_true", help="Whether to use morgan fingerprints.")
+
     parser.add_argument("--train_path", type=str, required=True, help="Path to the training dataset.")
     parser.add_argument("--test_path", type=str, required=True, help="Path to the test dataset.")
+    parser.add_argument("--feature", action="store_true", help="Whether to use features or not.")
+    parser.add_argument("--maccs", action="store_true", help="Whether to use MACCS keys.")
+    parser.add_argument("--finger", action="store_true", help="Whether to use morgan fingerprints.")    
     parser.add_argument("--drop_column", type=str, required=True, choices=['HLM', 'MLM'], help="Column to drop. Choose between 'HLM' and 'MLM'.")
     parser.add_argument("--stack_train_path", type=str, help="Path to the joblib file containing stacking predictions for the train set.")
     parser.add_argument("--stack_test_path", type=str, help="Path to the joblib file containing stacking predictions for the test set.")

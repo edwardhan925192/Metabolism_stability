@@ -37,9 +37,12 @@ def main(args):
     else:
         target_column = "MLM"
     
-    best_param = optimize_hyperparams(args.model, trainf, target_column, args.optuna_trials)
-    train_pred = recursive_training_and_prediction(args.model, trainf, target_column, best_param)
-    test_pred = predict_on_test(args.model, trainf, target_column, testf, best_param)
+    X = trainf.drop([target_column])
+    y = trainf[target_column])
+    
+    best_param = optimize_hyperparams(args.model, X, y, args.optuna_trials)
+    train_pred = recursive_training_and_prediction(args.model, X, y, best_param)
+    test_pred = predict_on_test(args.model, X, y, testf, best_param)
 
 
     # Additional tasks can be added here if needed

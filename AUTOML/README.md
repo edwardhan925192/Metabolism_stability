@@ -9,7 +9,12 @@ python main.py \
 --stack_train_path train_path.joblib \  
 --stack_test_path test_path.joblib \  
 --mode main \  
---time_limit 3600 * 4
+--time_limit 3600 * 4  
+
+# Colab  
+!git clone https://github.com/edwardhan925192/Metabolism_stability.git  
+%cd '/content/Metabolism_stability/AUTOML'  
+Then run the script  
 
 # Data  
 Data is expected to be csv files.  

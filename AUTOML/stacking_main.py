@@ -38,7 +38,7 @@ def main(args):
         target_column = "MLM"
     
     X = trainf.drop([target_column])
-    y = trainf[target_column])
+    y = trainf[target_column]
     
     best_param = optimize_hyperparams(args.model, X, y, args.optuna_trials)
     train_pred = recursive_training_and_prediction(args.model, X, y, best_param)

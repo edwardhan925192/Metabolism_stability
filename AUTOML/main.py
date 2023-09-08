@@ -47,7 +47,12 @@ def main(args):
 
     # Saving Predictions
     if args.mode == 'main':
-        predictions.to_csv('predictions.csv', index=False)
+        result_df = pd.DataFrame({
+            'id': test['id'], 
+            'predictions': predictions
+        })
+        result_df.to_csv('predictions.csv', index=False)
+
     elif args.mode == 'sub':
         joblib.dump(predictions, 'predictions.joblib')
 

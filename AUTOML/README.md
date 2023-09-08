@@ -37,6 +37,31 @@ Time limit of autogluon
 Runtime should be restarted after installing autogluon   
 
 # Stacking  
+python stacking_main.py \  
+--train_path path\to\train_data.csv \  
+--test_path path\to\test_data.csv \  
+--feature \  
+--maccs \  
+--drop_column HLM \  
+--model lightgbm \  
+--optuna_trials 50  
+
+* Data  
+Data is expected to be csv files.
+
+* Features  
+Feature,maccs,finger concatenate original dataframe with features of mols, maccs of mols,and morgan finger prints of mols.
+
+* Target  
+If the Target is MLM drop HLM, if it is HLM drop MLM.
+
+* Model
+Choose model for stacking
+
+* Trial
+Optuna trial  
+
+
 
 
 

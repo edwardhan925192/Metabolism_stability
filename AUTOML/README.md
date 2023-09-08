@@ -35,6 +35,8 @@ Time limit of autogluon
 !git clone https://github.com/edwardhan925192/Metabolism_stability.git  
 %cd '/content/Metabolism_stability/AUTOML'  
 Runtime should be restarted after installing autogluon   
+train_path  '/content/Metabolism_stability/AUTOML/train_ms.csv'    
+test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv'  
 
 # Stacking  
 python stacking_main.py \  
@@ -68,6 +70,8 @@ Optuna trial
 !pip install rdkit  
 !git clone https://github.com/edwardhan925192/Metabolism_stability.git  
 %cd '/content/Metabolism_stability/AUTOML'  
+train_path  '/content/Metabolism_stability/AUTOML/train_ms.csv'  
+test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv'  
 
 
 

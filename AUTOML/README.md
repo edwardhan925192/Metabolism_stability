@@ -73,6 +73,25 @@ Optuna trial
 train_path  '/content/Metabolism_stability/AUTOML/train_ms.csv'  
 test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv'  
 
+# CSV data prep  
+python data_csv.py \
+--train_path train_path \  
+--test_path test_path \  
+--feature \  
+--maccs \  
+--finger \  
+--drop_column HLM \  
+--stack_train_path train_path.joblib \  
+--stack_test_path test_path.joblib     
+
+# Colab  
+!pip install rdkit  
+!git clone https://github.com/edwardhan925192/Metabolism_stability.git  
+%cd '/content/Metabolism_stability/AUTOML'  
+Runtime should be restarted after installing autogluon   
+train_path  '/content/Metabolism_stability/AUTOML/train_ms.csv'    
+test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv' 
+
 
 
 

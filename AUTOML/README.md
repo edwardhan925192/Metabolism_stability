@@ -21,10 +21,10 @@ Feature,maccs,finger concatenate original dataframe with features of mols, maccs
 If the Target is MLM drop HLM, if it is HLM drop MLM.
 
 * Stacking  
-Stackings are expected to be in joblib form. if needed pass the paths.
+Stackings are expected to be in joblib form. if needed, pass the paths.
 
 * Save mode  
-If main is passed prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.
+If main is passed, prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.
 
 * Timelimit  
 Time limit of autogluon

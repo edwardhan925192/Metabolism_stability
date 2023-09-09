@@ -74,7 +74,7 @@ train_path  '/content/Metabolism_stability/AUTOML/train_ms.csv'
 test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv'  
 
 # CSV data prep  
-python data_csv.py \
+python data_csv.py \  
 --train_path train_path \  
 --test_path test_path \  
 --feature \  

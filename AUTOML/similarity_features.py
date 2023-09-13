@@ -13,13 +13,13 @@ def compute_similarity(smiles1, smiles2, nBits=1024):
     return DataStructs.TanimotoSimilarity(fp1, fp2)
 
 def add_similarity_features(df, nBits):
-    mlm_max = df.loc[662,'SMILES'] if len(df) > 662 else None
-    mlm_min = df.loc[23,'SMILES'] if len(df) > 23 else None
-    hlm_max = df.loc[1584,'SMILES'] if len(df) > 1584 else None
-    hlm_min = df.loc[23,'SMILES'] if len(df) > 23 else None
-    maxgap = df.loc[1584,'SMILES'] if len(df) > 1584 else None
-    mingap = df.loc[22,'SMILES'] if len(df) > 22 else None
-
+    mlm_max = 'O=C(Nc1ccccc1)C1CCCN1C1=NS(=O)(=O)c2ccccc21'
+    mlm_min = 'COCCCNC(=O)C1CCC(CN(Cc2c(Cl)cccc2Cl)S(=O)(=O)c2ccc(Br)cc2)CC1'
+    hlm_max = 'CN(C)S(=O)(=O)CCNCc1ccc(-c2ccccc2)cc1'
+    hlm_min = 'COCCCNC(=O)C1CCC(CN(Cc2c(Cl)cccc2Cl)S(=O)(=O)c2ccc(Br)cc2)CC1'
+    maxgap = 'CN(C)S(=O)(=O)CCNCc1ccc(-c2ccccc2)cc1'
+    mingap = 'O=C(C1CC(=O)N(c2n[nH]c3cc(Br)ccc23)C1)N1CCCC1'
+    
     standards = [mlm_max, mlm_min, hlm_max, hlm_min, maxgap, mingap]
     standard_names = ['mlm_max', 'mlm_min', 'hlm_max', 'hlm_min', 'maxgap', 'mingap']
 

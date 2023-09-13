@@ -26,6 +26,10 @@ def main(args):
         trainf = generate_morgan_fingerprints_and_concat(train)
         testf = generate_morgan_fingerprints_and_concat(test)
 
+    if args.similarity:
+        train = add_similarity_features(train, args.nBits)
+        test = add_similarity_features(test, args.nBits)
+
     trainf = trainf.drop(['id','SMILES'], axis=1)
     testf = testf.drop(['id','SMILES'], axis=1)
 
@@ -64,6 +68,8 @@ if __name__ == "__main__":
     parser.add_argument("--feature", action="store_true", help="Whether to use features or not.")
     parser.add_argument("--maccs", action="store_true", help="Whether to use MACCS keys.")
     parser.add_argument("--finger", action="store_true", help="Whether to use morgan fingerprints.")    
+    parser.add_argument("--similarity", action="store_true", help="Whether to compute molecular similarity.")  
+    parser.add_argument("--nBits", type=int, default=1024, help="Number of bits for Morgan fingerprint.")  
     parser.add_argument("--drop_column", type=str, required=True, choices=['HLM', 'MLM'], help="Column to drop. Choose between 'HLM' and 'MLM'.")
     parser.add_argument("--stack_train_path", type=str, help="Path to the joblib file containing stacking predictions for the train set.")
     parser.add_argument("--stack_test_path", type=str, help="Path to the joblib file containing stacking predictions for the test set.")

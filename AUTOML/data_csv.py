@@ -27,8 +27,8 @@ def main(args):
         testf = generate_morgan_fingerprints_and_concat(test)
 
     if args.similarity:
-        train = add_similarity_features(train, args.nBits)
-        test = add_similarity_features(test, args.nBits)
+        trainf = add_similarity_features(trainf, args.nBits)
+        testf = add_similarity_features(testf, args.nBits)
 
     trainf = trainf.drop(['id','SMILES'], axis=1)
     testf = testf.drop(['id','SMILES'], axis=1)

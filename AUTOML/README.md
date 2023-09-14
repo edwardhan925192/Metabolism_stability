@@ -2,22 +2,15 @@
 python main.py \  
 --train_path train_path \    
 --test_path test_path \  
---nBits 1024 \  
 --drop_column HLM \  
 --mode main \  
 --time_limit 3600 * 4  
 
 * Data  
-Data is expected to be csv files.
-
-* Features  
-Feature,maccs,finger concatenate original dataframe with features of mols, maccs of mols,and morgan finger prints of mols.
+Data is expected to be csv files.  
 
 * Target  
-If the Target is MLM drop HLM, if it is HLM drop MLM.
-
-* Stacking  
-Stackings are expected to be in joblib form. if needed, pass the paths.
+If the Target is MLM drop HLM, if it is HLM drop MLM.  
 
 * Save mode  
 If main is passed, prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.

@@ -9,11 +9,12 @@ def main(args):
     test = pd.read_csv(args.test_path)
     test_ids = pd.read_csv(args.test_id_path)
 
-    # Drop the specified column
-    train = train.drop(args.drop_column, axis=1)    
+    columns_to_drop = ['HLM', 'MLM', 'Diff', 'Mean']
+    columns_to_drop.remove(args.target)  # Remove the target column from drop list
+    train = train.drop(columns=columns_to_drop)            
 
     # Training and Prediction with AutoGluon
-    label = 'HLM' if args.drop_column == 'MLM' else 'MLM'
+    label = args.target
     predictor = TabularPredictor(label=label, eval_metric='root_mean_squared_error').fit(
         train,
         presets='best_quality',
@@ -38,7 +39,7 @@ if __name__ == "__main__":
     parser.add_argument("--train_path", type=str, required=True, help="Path to the training dataset.")
     parser.add_argument("--test_path", type=str, required=True, help="Path to the test dataset without ids.")
     parser.add_argument("--test_id_path", type=str, required=True, help="Path to the CSV file containing the 'id' column for the test dataset.")
-    parser.add_argument("--drop_column", type=str, required=True, choices=['HLM', 'MLM'], help="Column to drop. Choose between 'HLM' and 'MLM'.")
+    parser.add_argument("--target", type=str, required=True, choices=['HLM', 'MLM', 'Diff', 'Mean'], help="Target column for prediction.")
     parser.add_argument("--mode", type=str, required=True, choices=['main', 'sub'], 
                         help="Mode of operation. 'main' will save predictions in CSV. 'sub' will save predictions in joblib format.")
     parser.add_argument("--time_limit", type=int, default=3600 * 4.5, help="Time limit for AutoGluon in seconds.")

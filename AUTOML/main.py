@@ -10,8 +10,7 @@ def main(args):
     test_ids = pd.read_csv(args.test_id_path)
 
     # Drop the specified column
-    train = train.drop(args.drop_column, axis=1)
-    test = test.drop(args.drop_column, axis=1)
+    train = train.drop(args.drop_column, axis=1)    
 
     # Training and Prediction with AutoGluon
     label = 'HLM' if args.drop_column == 'MLM' else 'MLM'

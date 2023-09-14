@@ -3,7 +3,7 @@ python main.py \
 --train_path train_path \    
 --test_path test_path \  
 --test_id_path \  
---drop_column HLM \  
+--target HLM \  
 --mode main \  
 --time_limit 3600 * 4  
 
@@ -14,7 +14,7 @@ Data is expected to be csv files.
 This id path is expected to be a csv files that contains id of the test.  
 
 * Target  
-If the Target is MLM drop HLM, if it is HLM drop MLM.  
+There are 4 targets in total HLM, MLM, Diff, Mean
 
 * Save mode  
 If main is passed, prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.

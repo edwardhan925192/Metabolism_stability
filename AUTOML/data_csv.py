@@ -14,12 +14,10 @@ def main(args):
         trainf = data_prep(train)
         testf = data_prep(test)
     else:
-        trainf, testf = train, test
-
-    drop_column = args.drop_column  # 'HLM' or 'MLM'
+        trainf, testf = train, test    
 
     if args.maccs:
-        trainf = generate_and_concatenate_MACCS_keys(trainf, drop_columns=[drop_column])
+        trainf = generate_and_concatenate_MACCS_keys(trainf)
         testf = generate_and_concatenate_MACCS_keys(testf)
 
     if args.finger:
@@ -53,8 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("--maccs", action="store_true", help="Whether to use MACCS keys.")
     parser.add_argument("--finger", action="store_true", help="Whether to use morgan fingerprints.")    
     parser.add_argument("--similarity", action="store_true", help="Whether to compute molecular similarity.")  
-    parser.add_argument("--nBits", type=int, default=1024, help="Number of bits for Morgan fingerprint.")  
-    parser.add_argument("--drop_column", type=str, required=True, choices=['HLM', 'MLM'], help="Column to drop. Choose between 'HLM' and 'MLM'.")
+    parser.add_argument("--nBits", type=int, default=1024, help="Number of bits for Morgan fingerprint.")      
     parser.add_argument("--stack_train_path", type=str, help="Path to the joblib file containing stacking predictions for the train set.")
     parser.add_argument("--stack_test_path", type=str, help="Path to the joblib file containing stacking predictions for the test set.")    
     

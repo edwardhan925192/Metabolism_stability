@@ -6,7 +6,7 @@ from morgan_finger_features import generate_morgan_fingerprints_and_concat
 from maccs_features import generate_and_concatenate_MACCS_keys
 from mol_features import data_prep
 from similarity_features import compute_similarity, add_similarity_features
-from Zagreb_index import calculate_zagreb_index
+from zagreb_index import calculate_zagreb_index
 
 def main(args):
     train, test = preprocess_call_data(args.train_path, args.test_path)

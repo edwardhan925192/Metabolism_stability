@@ -73,7 +73,6 @@ python data_csv.py \
 --finger \  
 --similarity \    
 --nBits 1024 \  
---drop_column HLM \  
 --stack_train_path train_path.joblib \  
 --stack_test_path test_path.joblib     
 

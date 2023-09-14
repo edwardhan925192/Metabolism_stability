@@ -14,7 +14,7 @@ Data is expected to be csv files.
 This id path is expected to be a csv files that contains id of the test.  
 
 * Target  
-There are 4 targets in total HLM, MLM, Diff, Mean
+There are 4 targets in total HLM, MLM, Diff(HLM - MLM), Mean
 
 * Save mode  
 If main is passed, prediction is saved in csv form with id. If sub is passed prediction is saved in joblib format.

@@ -1,59 +1,31 @@
 import argparse
 import pandas as pd
-import joblib
-from data_prep_main import preprocess_call_data
-from morgan_finger_features import generate_morgan_fingerprints_and_concat
-from maccs_features import generate_and_concatenate_MACCS_keys
-from mol_features import data_prep
-from similarity_features import compute_similarity, add_similarity_features
 from autogluon.tabular import TabularPredictor
+import joblib 
 
 def main(args):
-    train, test = preprocess_call_data(args.train_path, args.test_path)
+    # Load Data
+    train = pd.read_csv(args.train_path)
+    test = pd.read_csv(args.test_path)
+    test_ids = pd.read_csv(args.test_id_path)
 
-    if args.feature:
-        trainf = data_prep(train)
-        testf = data_prep(test)
-    else:
-        trainf, testf = train, test
+    # Drop the specified column
+    train = train.drop(args.drop_column, axis=1)
+    test = test.drop(args.drop_column, axis=1)
 
-    drop_column = args.drop_column  # 'HLM' or 'MLM'
-
-    if args.maccs:
-        trainf = generate_and_concatenate_MACCS_keys(trainf, drop_columns=[drop_column])
-        testf = generate_and_concatenate_MACCS_keys(testf)
-
-    if args.finger:
-        trainf = generate_morgan_fingerprints_and_concat(train)
-        testf = generate_morgan_fingerprints_and_concat(test)
-
-    if args.similarity:
-        train = add_similarity_features(train, args.nBits)
-        test = add_similarity_features(test, args.nBits)
-
-    trainf = trainf.drop(['id','SMILES'], axis=1)
-    testf = testf.drop(['id','SMILES'], axis=1)
-
-    if args.stack_train_path and args.stack_test_path:
-        train_stacking_preds = joblib.load(args.stack_train_path)
-        test_stacking_preds = joblib.load(args.stack_test_path)
-
-        trainf['stacking_preds'] = train_stacking_preds
-        testf['stacking_preds'] = test_stacking_preds
-    
     # Training and Prediction with AutoGluon
     label = 'HLM' if args.drop_column == 'MLM' else 'MLM'
     predictor = TabularPredictor(label=label, eval_metric='root_mean_squared_error').fit(
-        trainf,
+        train,
         presets='best_quality',
         time_limit=args.time_limit
     )
-    predictions = predictor.predict(testf)
+    predictions = predictor.predict(test)
 
     # Saving Predictions
     if args.mode == 'main':
         result_df = pd.DataFrame({
-            'id': test['id'], 
+            'id': test_ids['id'], 
             'predictions': predictions
         })
         result_df.to_csv('predictions.csv', index=False)
@@ -62,18 +34,12 @@ def main(args):
         joblib.dump(predictions, 'predictions.joblib')
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process molecular data with different feature sets.")
+    parser = argparse.ArgumentParser(description="Process molecular data.")
 
     parser.add_argument("--train_path", type=str, required=True, help="Path to the training dataset.")
-    parser.add_argument("--test_path", type=str, required=True, help="Path to the test dataset.")
-    parser.add_argument("--feature", action="store_true", help="Whether to use features or not.")
-    parser.add_argument("--maccs", action="store_true", help="Whether to use MACCS keys.")
-    parser.add_argument("--finger", action="store_true", help="Whether to use morgan fingerprints.")    
-    parser.add_argument("--similarity", action="store_true", help="Whether to compute molecular similarity.")  
-    parser.add_argument("--nBits", type=int, default=1024, help="Number of bits for Morgan fingerprint.")  
+    parser.add_argument("--test_path", type=str, required=True, help="Path to the test dataset without ids.")
+    parser.add_argument("--test_id_path", type=str, required=True, help="Path to the CSV file containing the 'id' column for the test dataset.")
     parser.add_argument("--drop_column", type=str, required=True, choices=['HLM', 'MLM'], help="Column to drop. Choose between 'HLM' and 'MLM'.")
-    parser.add_argument("--stack_train_path", type=str, help="Path to the joblib file containing stacking predictions for the train set.")
-    parser.add_argument("--stack_test_path", type=str, help="Path to the joblib file containing stacking predictions for the test set.")
     parser.add_argument("--mode", type=str, required=True, choices=['main', 'sub'], 
                         help="Mode of operation. 'main' will save predictions in CSV. 'sub' will save predictions in joblib format.")
     parser.add_argument("--time_limit", type=int, default=3600 * 4.5, help="Time limit for AutoGluon in seconds.")

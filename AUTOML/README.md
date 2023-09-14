@@ -2,12 +2,16 @@
 python main.py \  
 --train_path train_path \    
 --test_path test_path \  
+--test_id_path \  
 --drop_column HLM \  
 --mode main \  
 --time_limit 3600 * 4  
 
 * Data  
-Data is expected to be csv files.  
+Data is expected to be csv files.
+
+* Test_id
+This id path is expected to be a csv files that contains id of the test.  
 
 * Target  
 If the Target is MLM drop HLM, if it is HLM drop MLM.  

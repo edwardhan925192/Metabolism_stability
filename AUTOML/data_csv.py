@@ -7,6 +7,7 @@ from maccs_features import generate_and_concatenate_MACCS_keys
 from mol_features import data_prep
 from similarity_features import compute_similarity, add_similarity_features
 from zagreb_index import calculate_zagreb_index
+from cyp import cyp_concat
 
 def main(args):
     train, test = preprocess_call_data(args.train_path, args.test_path)
@@ -31,7 +32,11 @@ def main(args):
 
     if args.zagreb:
         trainf = calculate_zagreb_index(trainf)
-        testf = calculate_zagreb_index(testf)
+        testf = calculate_zagreb_index(testf)  
+
+    if args.train_path_cyp:
+        trainf,testf = cyp_concat(trainf, testf, args.train_path_cyp, args.test_path_cyp)
+        
 
     trainf = trainf.drop(['id','SMILES'], axis=1)
     testf = testf.drop(['id','SMILES'], axis=1)
@@ -58,6 +63,8 @@ if __name__ == "__main__":
     parser.add_argument("--similarity", action="store_true", help="Whether to compute molecular similarity.")  
     parser.add_argument("--nBits", type=int, default=1024, help="Number of bits for Morgan fingerprint.")      
     parser.add_argument("--zagreb", action="store_true", help="Whether to concatenate zagreb index.")  
+    parser.add_argument('--train_path_cyp', type=str, required=True, help='Path to the training CSV file')  
+    parser.add_argument('--test_path_cyp', type=str, required=True, help='Path to the testing CSV file')  
     parser.add_argument("--stack_train_path", type=str, help="Path to the joblib file containing stacking predictions for the train set.")
     parser.add_argument("--stack_test_path", type=str, help="Path to the joblib file containing stacking predictions for the test set.")    
     

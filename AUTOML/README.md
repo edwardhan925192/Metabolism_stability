@@ -74,6 +74,8 @@ python data_csv.py \
 --similarity \    
 --nBits 1024 \  
 --zagreb_index \  
+--train_path_cyp cyp_train_path \  
+--test_path_cyp cyp_test_path \  
 --stack_train_path train_path.joblib \  
 --stack_test_path test_path.joblib     
 

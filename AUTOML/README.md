@@ -66,18 +66,15 @@ test_path  '/content/Metabolism_stability/AUTOML/test_ms.csv'
 
 # CSV data prep  
 python data_csv.py \  
---train_path train_path \  
---test_path test_path \  
+--train_path '/content/Metabolism_stability/AUTOML/original_train.csv' \  
+--test_path '/content/Metabolism_stability/AUTOML/original_test.csv' \  
 --feature \  
 --maccs \  
---finger \  
---similarity \    
---nBits 1024 \  
---zagreb_index \  
---train_path_cyp cyp_train_path \  
---test_path_cyp cyp_test_path \  
---stack_train_path train_path.joblib \  
---stack_test_path test_path.joblib     
+--similarity \  
+--nBits 2048 \  
+--zagreb \  
+--train_path_cyp '/content/Metabolism_stability/AUTOML/data/swissaddme/swissaddme_train.csv' \  
+--test_path_cyp '/content/Metabolism_stability/AUTOML/data/swissaddme/swissaddme_test.csv'  
 
 # Colab  
 !pip install rdkit  
